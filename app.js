@@ -5,7 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var auth = require('./routes/auth');
+var register = require('./routes/register');
+var login = require('./routes/login');
 var app = express();
 
 // view engine setup
@@ -20,7 +21,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser({secret:'helloworldistoosoon'}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(auth);
+app.use('/register',register);
+app.use('/login',login);
 
 app.get('/',function(req,res){
   res.send('hello world');
